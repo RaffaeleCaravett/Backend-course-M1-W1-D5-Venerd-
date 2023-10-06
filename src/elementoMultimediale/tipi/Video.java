@@ -7,10 +7,24 @@ import interfaces.playable;
 public class Video extends ElementoMultimediale implements playable, brightness {
     private int durata;
     private int volume;
-    public Video(String titolo,int durata,int volume) {
+    private int luminosita;
+    public Video(String titolo,int durata,int volume,int luminosita) {
         super(titolo);
-        this.durata = durata;
-        this.volume = volume;
+        if (durata >= 0) {
+            this.durata = durata;
+        } else {
+            System.out.println("La durata del video è stata impostata a zero poichè il valore che hai inserito non è maggiore di 0.");
+        }
+        if (volume >= 0 && volume <= 10) {
+            this.volume = volume;
+        } else {
+            System.out.println("Il volume del video è stato impostato a zero poichè il valore che hai inserito non è compreso fra 0 e 10.");
+        }
+        if (luminosita >= 0 && luminosita <= 10) {
+            this.luminosita = luminosita;
+        } else {
+            System.out.println("La luminosità del video è stata impostata a zero poichè il valore che hai inserito non è compreso fra 0 e 10.");
+        }
     }
 
 
@@ -27,41 +41,63 @@ public class Video extends ElementoMultimediale implements playable, brightness 
     @Override
     public void abbassaVolume() {
         if(this.volume>=1){
+            System.out.println("Il volume del video è passato da " + this.getVolume());
             this.volume+=-1;
+            System.out.println("a "+ this.getVolume());
         }else {
-            System.out.println("Il volume è già a zero");
+            System.out.println("Il volume del video è già a zero");
         }
     }
 
     @Override
     public void alzaVolume() {
-        if(this.volume<=0){
+        if(this.volume<=9){
+            System.out.println("Il volume del video è passato da " + this.getVolume());
             this.volume+=1;
+            System.out.println("a "+ this.getVolume());
         }else {
-            System.out.println("Il volume è già al massimo");
+            System.out.println("Il volume del video è già a zero");
         }
     }
     @Override
     public void play() {
-        if(this.volume<=0){
-            this.volume+=1;
-        }else {
-            System.out.println("Il volume è già al massimo");
+        StringBuilder puntoEsclamativo = new StringBuilder();
+        for (int i = 0; i < volume; i++) {
+            puntoEsclamativo.append("!");
+        }
+        StringBuilder asterisco = new StringBuilder();
+        for (int i = 0; i < luminosita; i++) {
+            asterisco.append("*");
+        }
+        for (int i = 0; i < durata; i++) {
+            System.out.println(this.getTitolo() + puntoEsclamativo + asterisco);
         }
     }
 
     @Override
     public int getLuminosita() {
-        return 0;
+        return this.luminosita;
     }
 
     @Override
     public void abbassaLuminosita() {
-
+        if(this.luminosita>=1){
+            System.out.println("La luminosità del video è passata da " + this.getLuminosita());
+            this.luminosita+=-1;
+            System.out.println("a "+ this.getLuminosita());
+        }else {
+            System.out.println("La luminosità del video è già a zero");
+        }
     }
 
     @Override
     public void alzaLuminosita() {
-
+        if(this.luminosita<=9){
+            System.out.println("La luminosità del video è passata da " + this.getLuminosita());
+            this.luminosita+=1;
+            System.out.println("a "+ this.getLuminosita());
+        }else {
+            System.out.println("La luminosità del video è già al massimo");
+        }
     }
 }
