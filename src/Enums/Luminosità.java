@@ -1,0 +1,14 @@
+package Enums;
+
+public enum Luminosità {
+    LUMINOSITA_1,
+    LUMINOSITA_2,
+    LUMINOSITA_3,
+    LUMINOSITA_4,
+    LUMINOSITA_5,
+    LUMINOSITA_6,
+    LUMINOSITA_7,
+    LUMINOSITA_8,
+    LUMINOSITA_9,
+    LUMINOSITA_10
+}

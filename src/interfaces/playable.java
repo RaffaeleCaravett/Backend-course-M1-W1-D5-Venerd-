@@ -6,4 +6,6 @@ public interface playable {
 
     void abbassaVolume();
     void alzaVolume();
+
+    void play();
 }

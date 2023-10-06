@@ -5,29 +5,49 @@ import interfaces.brightness;
 import interfaces.playable;
 
 public class Video extends ElementoMultimediale implements playable, brightness {
-
-    public Video(String titolo) {
+    private int durata;
+    private int volume;
+    public Video(String titolo,int durata,int volume) {
         super(titolo);
+        this.durata = durata;
+        this.volume = volume;
     }
+
 
     @Override
     public int getDurata() {
-        return 0;
+        return this.durata;
     }
 
     @Override
     public int getVolume() {
-        return 0;
+        return this.volume;
     }
 
     @Override
     public void abbassaVolume() {
-
+        if(this.volume>=1){
+            this.volume+=-1;
+        }else {
+            System.out.println("Il volume è già a zero");
+        }
     }
 
     @Override
     public void alzaVolume() {
-
+        if(this.volume<=0){
+            this.volume+=1;
+        }else {
+            System.out.println("Il volume è già al massimo");
+        }
+    }
+    @Override
+    public void play() {
+        if(this.volume<=0){
+            this.volume+=1;
+        }else {
+            System.out.println("Il volume è già al massimo");
+        }
     }
 
     @Override
