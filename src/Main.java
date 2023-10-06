@@ -11,16 +11,18 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        //Dichiaro gli oggetti
+
         RegistrazioneAudio audio1 ;
         Video video1;
         Immagine immagine1 ;
         Video video2;
         RegistrazioneAudio audio2 ;
 
-
+        //Dichiaro l'array di oggetti
         ElementoMultimediale[] elementoMultimediales = new ElementoMultimediale[5];
 
-
+        //Permetto all'utente di inserire gli attributi degli oggetti manualmente.
         System.out.println("Ciao! Inserisci un audio con i seguenti parametri : titolo , durata e volume. Mi raccomando: uno per volta!");
         System.out.println("Titolo :");
         Scanner scanner = new Scanner(System.in);
@@ -79,6 +81,7 @@ public class Main {
         scanner.nextLine();
         int number;
         System.out.println("Complimenti! Ecco di seguito gli elementi che hai inserito : ");
+        //creo un loop do while, dove eseguo una serie di operazioni fino a quando l'utente immetto il numero 0
         do {
             printTitles(elementoMultimediales);
             System.out.println("Quale elemento vuoi eseguire? 1, 2, 3, 4 o 5? Se premi 0 lo scanner si chiuderà!");
@@ -95,9 +98,8 @@ public class Main {
         scanner.close();
     }
 
-
+//creo un metodo da richiamare in qualsiasi momento mi serva pescare un elemento dell'array, senza dover scrivere eventuali uguali righe di codice.
     private static void checkElement(int number,ElementoMultimediale[] elementoMultimediales){
-
         ElementoMultimediale elementoMultimediale= elementoMultimediales[number-1];
                 if(elementoMultimediale instanceof RegistrazioneAudio|| elementoMultimediale instanceof Video){
                     ((playable) elementoMultimediale).play();
@@ -105,12 +107,14 @@ public class Main {
                     ((Immagine) elementoMultimediale).show();
                 }
     }
+    //Faccio la stessa cosa con questo metodo
 private static void printTitles(ElementoMultimediale[] elementoMultimediales){
     for (int i = 0; i < elementoMultimediales.length; i++) {
         System.out.println((i + 1) + ": " + elementoMultimediales[i].getTitolo());
     }
 }
 
+//Creo un metodo che dia la possibilità all'utente di inserire un altro numero se quello di prima non è corretto
     private static int getNextNumber(Scanner scanner) {
         while (true) {
             try {
